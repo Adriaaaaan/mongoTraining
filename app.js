@@ -1,5 +1,5 @@
 var mongo = require("mongodb").MongoClient;
 
-mongo.connect("localhost",function(err,db){
+mongo.connect("mongodb://localhost",function(err,db){
 
 });

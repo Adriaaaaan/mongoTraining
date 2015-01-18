@@ -27,9 +27,18 @@ function UsersDAO(db) {
         if (email != "") {
             user['email'] = email;
         }
+        var query = {_id:username};
+        users.findOne(query,function(err,user){
+          if (err) return callback(err, null);
+          if(user!==null) {
+            var user_exists = new Error("User already exists");
+            // Set an extra field so we can distinguish this from a db error
+            user_exists.user_exists = true;
+            callback(user_exists, null)
+          }
+          users.insert(user,callback);
+        });
 
-        // TODO: hw2.3
-        callback(Error("addUser Not Yet Implemented!"), null);
     }
 
     this.validateLogin = function(username, password, callback) {
@@ -60,8 +69,8 @@ function UsersDAO(db) {
             }
         }
 
-        // TODO: hw2.3
-        callback(Error("validateLogin Not Yet Implemented!"), null);
+        var query = {_id:username};
+        users.findOne(query,validateUserDoc);
     }
 }
 
