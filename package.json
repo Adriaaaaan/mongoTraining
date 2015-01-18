@@ -14,5 +14,8 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Adriaaaaan/mongoTraining/issues"
+  },
+  "dependencies": {
+      "mongodb": "^1.4.28"
   }
 }
